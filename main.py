@@ -7,6 +7,12 @@ class TranslationModel(BaseModel):
 
 app = FastAPI()
 
+@app.get("/ping")
+async def ping():
+    return {
+        "message":"Pinged successfully"
+    }
+
 @app.post("/translate")
 async def root(translationBody: TranslationModel):
     fromLang = "auto"
