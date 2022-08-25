@@ -1,11 +1,24 @@
 from fastapi import FastAPI
 from translate.translate import translate
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+
 class TranslationModel(BaseModel):
     text: str = 'The text to translate'
     to_language: str = 'fr'
 
 app = FastAPI()
+
+origins = [
+    "*"
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/ping")
 async def ping():
