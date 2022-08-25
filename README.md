@@ -1,7 +1,7 @@
 # <p align='center'>Python-translator</p>
 # Description
 A light python api to translate your text.
-Fork this repository if you want to use it on your own
+Fork this repository if you want to use it on your local environment. Otherwise, you can try out the deployed url https://python-translator.herokuapp.com/translate
 
 # Getting started
 
