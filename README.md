@@ -110,6 +110,6 @@ POST
   "translated": "Wikipedia fournit tout son contenu gratuitement, sans publicité, et sans utiliser l'exploitation des données personnelles de ses utilisateurs."
 }
 ```
-# Deployed app
+# Deployed api
 
 ## Url : https://python-translator.herokuapp.com
