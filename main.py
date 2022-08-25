@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from translate import translate
+from translate.translate import translate
 from pydantic import BaseModel
 class TranslationModel(BaseModel):
     text: str = 'The text to translate'
