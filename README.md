@@ -4,7 +4,7 @@
 A light python api to translate your text.
 Fork this repository if you want to use it on your local environment. Otherwise, you can try out the deployed url https://python-translator.herokuapp.com
 
-# Getting started
+# V1
 
 ## Prerequisites
 ### Packages
@@ -24,7 +24,7 @@ localhost:8000 (Or use https://python-translator.herokuapp.com to try out the de
 ```
 ### EndPoint
 ```
-/translate
+/v1/translate
 ```
 ### Method
 ```

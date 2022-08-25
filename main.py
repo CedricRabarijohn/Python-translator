@@ -1,12 +1,11 @@
 from fastapi import FastAPI
-from translate.translate import translate
-from pydantic import BaseModel
+from services.translation.translationService import translateFromGoogle
+from models.translation.TranslationModelV1 import TranslationModelV1
+from models.translation.TranslationModelV2 import TranslationModelV2
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-
-class TranslationModel(BaseModel):
-    text: str = 'The text to translate'
-    to_language: str = 'fr'
+from controllers.translation.TranslationController import translateV1
+from controllers.translation.TranslationController import translateV2
 
 app = FastAPI()
 
@@ -34,21 +33,19 @@ async def home():
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
+
 @app.get("/ping")
 async def ping():
     return {
         "message":"Pinged successfully"
     }
 
-@app.post("/translate")
-async def root(translationBody: TranslationModel):
-    fromLang = "auto"
-    text = translationBody.text
-    toLang = translationBody.to_language
-    res = {
-    "from_language": fromLang,
-    "to_language": toLang,
-    # "translated":"Ceci est la traduction"
-    "translated": translate(text, from_language=fromLang, to_language=toLang)
-    }
+@app.post("/v1/translate")
+async def translateFunctionV1(translationBody: TranslationModelV1):
+    res = await translateV1(translationBody)
+    return res
+
+@app.post("/v2/translate")
+async def translateFunctionV2(translationBodyV2: TranslationModelV2):
+    res = await translateV2(translationBodyV2)
     return res
