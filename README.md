@@ -19,7 +19,11 @@ Fork this repository if you want to use it on your local environment. Otherwise,
 ## Usage
 ### Url
 ```
-localhost:8000/translate
+localhost:8000
+```
+### EndPoint
+```
+/translate
 ```
 ### Method
 ```
