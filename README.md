@@ -57,4 +57,4 @@ POST
     ```
 
 # Deployed app
-## Url : https://python-translator.herokuapp.com/translate
+## Url : https://python-translator.herokuapp.com
