@@ -20,6 +20,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+async def home():
+    return {
+        "Github documentation":"https://github.com/CedricRabarijohn/Python-translator"
+    }
 @app.get("/ping")
 async def ping():
     return {
