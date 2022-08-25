@@ -18,7 +18,7 @@ A light python api to translate your text
 ## Usage
 ### Url
 ```
-localhost:8000
+localhost:8000/translate
 ```
 ### Method
 ```
@@ -49,3 +49,6 @@ POST
         "translated": "Wikipedia fournit tout son contenu gratuitement, sans publicité, et sans utiliser l'exploitation des données personnelles de ses utilisateurs."
     }
     ```
+
+# Deployed app
+## Url : https://python-translator.herokuapp.com/translate
