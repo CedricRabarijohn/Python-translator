@@ -1,6 +1,6 @@
 # <p align='center'>Python-translator</p>
 # Description
-```A python app to translate your text```
+A light python api to translate your text
 
 # Getting started
 
@@ -49,3 +49,8 @@ POST
         "translated": "Wikipedia fournit tout son contenu gratuitement, sans publicité, et sans utiliser l'exploitation des données personnelles de ses utilisateurs."
     }
     ```
+
+
+```py
+print('hello world')
+```
