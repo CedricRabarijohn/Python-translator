@@ -13,9 +13,9 @@ async def root(translationBody: TranslationModel):
     text = translationBody.text
     toLang = translationBody.to_language
     res = {
-        "from_language": fromLang,
-        "to_language": toLang,
-        # "translated":"Ceci est la traduction"
-        "translated": translate(text, from_language=fromLang, to_language=toLang)
+    "from_language": fromLang,
+    "to_language": toLang,
+    # "translated":"Ceci est la traduction"
+    "translated": translate(text, from_language=fromLang, to_language=toLang)
     }
     return res
