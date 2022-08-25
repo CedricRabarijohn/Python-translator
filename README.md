@@ -1,6 +1,9 @@
 [deployed_url]: https://python-translator.herokuapp.com
 
-# <p align='center'>⌨ Python-translator ⌨</p>
+# <p align='center'>🌐 Python-translator 🌐</p>
+
+<p align='center' style="font-size:25px; border: 4px solid green">🔥💯 V2 now supports multiple translations
+💯🔥</p>
 
 # Description
 
@@ -28,7 +31,13 @@ Fork this repository if you want to use it on your local environment. Otherwise,
 ### ✅ Url
 
 ```
-localhost:8000 (Or use https://python-translator.herokuapp.com to try out the deployed version ready to go !)
+localhost:8000
+```
+
+or
+
+```
+https://python-translator.herokuapp.com
 ```
 
 ### ✅ EndPoint
@@ -77,7 +86,13 @@ POST
 ### ✅ Url
 
 ```
-localhost:8000 (Or use https://python-translator.herokuapp.com to try out the deployed version ready to go !)
+localhost:8000
+```
+
+or
+
+```
+https://python-translator.herokuapp.com
 ```
 
 ### ✅ EndPoint
@@ -110,6 +125,7 @@ POST
   "translated": "Wikipedia fournit tout son contenu gratuitement, sans publicité, et sans utiliser l'exploitation des données personnelles de ses utilisateurs."
 }
 ```
+
 # Deployed api
 
 ## Url : https://python-translator.herokuapp.com
