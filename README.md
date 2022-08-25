@@ -1,6 +1,7 @@
 # <p align='center'>Python-translator</p>
 # Description
-A light python api to translate your text
+A light python api to translate your text.
+Fork this repository if you want to use it on your own
 
 # Getting started
 
