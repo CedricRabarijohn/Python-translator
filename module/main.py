@@ -1,17 +1,16 @@
 from fastapi import FastAPI
-from services.translation.translationService import translateFromGoogle
-from models.translation.TranslationModelV1 import TranslationModelV1
-from models.translation.TranslationModelV2 import TranslationModelV2
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
-from controllers.translation.TranslationController import translateV1
-from controllers.translation.TranslationController import translateV2
+
+from module.models.translation.TranslationModelV1 import TranslationModelV1
+from module.models.translation.TranslationModelV2 import TranslationModelV2
+from module.controllers.translation.translation_controller import translate_v1
+from module.controllers.translation.translation_controller import translate_v2
 
 app = FastAPI()
 
-origins = [
-    "*"
-]
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -19,7 +18,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 @app.get("/")
 async def home():
     html_content = """
@@ -41,11 +39,11 @@ async def ping():
     }
 
 @app.post("/v1/translate")
-async def translateFunctionV1(translationBody: TranslationModelV1):
-    res = await translateV1(translationBody)
+async def translate_function_v1(translation_body_v1: TranslationModelV1):
+    res = await translate_v1(translation_body_v1)
     return res
 
 @app.post("/v2/translate")
-async def translateFunctionV2(translationBodyV2: TranslationModelV2):
-    res = await translateV2(translationBodyV2)
+async def translate_function_v2(translation_body_v2: TranslationModelV2):
+    res = await translate_v2(translation_body_v2)
     return res
