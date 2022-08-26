@@ -11,6 +11,14 @@ app = FastAPI()
 
 origins = ['*']
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/")
 async def home():
     html_content = """
@@ -40,11 +48,3 @@ async def translate_function_v1(translation_body_v1: TranslationModelV1):
 async def translate_function_v2(translation_body_v2: TranslationModelV2):
     res = await translate_v2(translation_body_v2)
     return res
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
