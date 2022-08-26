@@ -24,7 +24,7 @@ async def translate_v2(translation_body_v2: TranslationModelV2):
     i = 0
     # Change the fields values to become the translated ones
     for attr in texts:
-        texts[attr] = utils.set_first_letter_upper(translated_arr[i])
+        texts[attr] = translated_arr[i]
         i += 1
     # Payload of the response
     res = {
