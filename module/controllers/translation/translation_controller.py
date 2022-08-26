@@ -13,7 +13,7 @@ async def translate_v2(translation_body_v2: TranslationModelV2):
     texts = translation_body_v2.texts
     # The language to translate the texts to (ex: en, fr, es)
     to_lang = translation_body_v2.to_language
-    # translate
+    # Translate each field
     i = 0
     for attr in texts:
         texts[attr] = translate_from_google(texts[attr], from_language=from_lang, to_language=to_lang)
