@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse
 
 from module.models.translation.TranslationModelV1 import TranslationModelV1
@@ -9,15 +9,8 @@ from module.controllers.translation.translation_controller import translate_v2
 
 app = FastAPI()
 
-origins = ['http://localhost:3000']
+origins = ['*']
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 @app.get("/")
 async def home():
     html_content = """
@@ -47,3 +40,11 @@ async def translate_function_v1(translation_body_v1: TranslationModelV1):
 async def translate_function_v2(translation_body_v2: TranslationModelV2):
     res = await translate_v2(translation_body_v2)
     return res
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
