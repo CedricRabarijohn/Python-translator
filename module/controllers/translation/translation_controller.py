@@ -1,7 +1,8 @@
+import imp
 from module.services.translation.translation_service import translate_from_google
 from module.models.translation.TranslationModelV1 import TranslationModelV1
 from module.models.translation.TranslationModelV2 import TranslationModelV2
-
+from module.services.utils import utils
 # V2
 async def translate_v2(translation_body_v2: TranslationModelV2):
     # The base language (ex: en, fr, es)
@@ -23,7 +24,7 @@ async def translate_v2(translation_body_v2: TranslationModelV2):
     i = 0
     # Change the fields values to become the translated ones
     for attr in texts:
-        texts[attr] = translated_arr[i]
+        texts[attr] = utils.set_first_letter_upper(translated_arr[i])
         i += 1
     # Payload of the response
     res = {
