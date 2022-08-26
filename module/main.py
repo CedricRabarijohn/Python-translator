@@ -9,7 +9,7 @@ from module.controllers.translation.translation_controller import translate_v2
 
 app = FastAPI()
 
-origins = ["*"]
+origins = ['http://localhost:3000']
 
 app.add_middleware(
     CORSMiddleware,
