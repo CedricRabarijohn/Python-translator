@@ -3,6 +3,7 @@ from module.services.translation.translation_service import translate_from_googl
 from module.models.translation.TranslationModelV1 import TranslationModelV1
 from module.models.translation.TranslationModelV2 import TranslationModelV2
 from module.services.utils import utils
+
 # V2
 async def translate_v2(translation_body_v2: TranslationModelV2):
     # The base language (ex: en, fr, es)
