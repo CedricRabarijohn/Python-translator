@@ -1,4 +1,6 @@
 from cgitb import text
+from dataclasses import replace
+import re
 import imp
 from module.services.translation.translation_service import translate_from_google
 from module.models.translation.TranslationModelV1 import TranslationModelV1
@@ -25,30 +27,31 @@ async def translate_v2(translation_body_v2: TranslationModelV2):
     # An array that will contain the values of the texts
     text_arr = []
     for attr in texts:
-        text_arr.append(texts[attr])
+        text_arr.append(str(texts[attr]).replace('||',''))
     # Contains the texts combined in one text separated with a separator |||
-    text_concatened = "||".join(text_arr) + "||"
+    text_concatened = " || ".join(text_arr) + " || "
 
     # Translate the text
     translated_text = translate_from_google(text_concatened, from_language=from_lang, to_language=to_lang)
-
-    # An array or the translated texts by splitting |||
+    # Replacing unexpected behaviours like | | or ||| and much more
+    pattern = re.compile(r'\|(\W+)\|')
+    translated_text = re.sub(pattern,'||',translated_text)
+    # An array with the translated_text splited with ||
     translated_arr = translated_text.split("||")
-    
     # Change the fields values to become the translated ones
     i = 0
     for attr in texts:
         try:
             texts[attr] = set_first_letter_upper_and_remove_spaces(translated_arr[i])
         except:
-            texts[attr] = translated_arr[i]
+            print('y')
         i += 1
 
     # Payload of the response
     res = {
         "from_language": from_lang,
         "to_language":to_lang,
-        "translated": texts
+        "translated": texts,
     }
     return res
 
@@ -60,7 +63,6 @@ async def translate_v1(translation_body_v1: TranslationModelV1):
     res = {
         "from_language": fromLang,
         "to_language": to_lang,
-        # "translated":"Ceci est la traduction"
         "translated": translate_from_google(text, from_language=fromLang, to_language=to_lang)
     }
     return res

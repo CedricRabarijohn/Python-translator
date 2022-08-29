@@ -8,9 +8,8 @@ from module.controllers.translation.translation_controller import translate_v1
 from module.controllers.translation.translation_controller import translate_v2
 
 app = FastAPI()
-
+# Adding CORS MiddleWare
 origins = ['*']
-
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -18,7 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
+# HTML showing where to read the documentations
 @app.get("/")
 async def home():
     html_content = """
@@ -27,24 +26,29 @@ async def home():
             <title>Python translator</title>
         </head>
         <body style="min-height:100vh;display:flex;justify-content:center;align-items:center">
-            <h1>Read the documentation here : <a href="https://github.com/CedricRabarijohn/Python-translator#python-translator">https://github.com/CedricRabarijohn/Python-translator</a></h1>
+            <h1>Read the documentation <a href="https://github.com/CedricRabarijohn/Python-translator#python-translator">here</a></h1>
         </body>
     </html>
     """
     return HTMLResponse(content=html_content, status_code=200)
 
+# A simple endpoint to ping so the server don't sleep (Ex : UptimeRobot)
 @app.get("/ping")
 async def ping():
     return {
         "message":"Pinged successfully"
     }
 
+# !! (NEW)
+# Translate V2
+@app.post("/v2/translate")
+async def translate_function_v2(translation_body_v2: TranslationModelV2):
+    res = await translate_v2(translation_body_v2)
+    return res
+
+# Translate V1
 @app.post("/v1/translate")
 async def translate_function_v1(translation_body_v1: TranslationModelV1):
     res = await translate_v1(translation_body_v1)
     return res
 
-@app.post("/v2/translate")
-async def translate_function_v2(translation_body_v2: TranslationModelV2):
-    res = await translate_v2(translation_body_v2)
-    return res
